@@ -7,18 +7,6 @@
 
 import UIKit
 
-
-enum Link {
-    case rickAndMortyURL
-    
-    var url: URL {
-        switch self {
-        case .rickAndMortyURL:
-            return URL(string: "https://rickandmortyapi.com/api/character/105")!
-        }
-    }
-}
-
 final class RickAndMortyViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -28,7 +16,9 @@ final class RickAndMortyViewController: UIViewController {
     }
     
     private func fetchRickAndMorty() {
-        URLSession.shared.dataTask(with: Link.rickAndMortyURL.url) { data, _, error in
+        let url = URL(string: "https://rickandmortyapi.com/api/character/105")!
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data else {
                 print(error?.localizedDescription ?? "No error description")
                 return
